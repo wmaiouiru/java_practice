@@ -33,4 +33,19 @@ class SandboxTest {
         Assert.assertEquals(result, false);
     }
 
+    @Test
+    void chocolateBar1() {
+        String output = Sandbox.chocolateBar(4, 2, 6);
+        Assert.assertEquals(output, "YES");
+    }
+    @Test
+    void chocolateBar2() {
+        String output = Sandbox.chocolateBar(2, 10, 7);
+        Assert.assertEquals(output, "NO");
+    }
+    @Test
+    void chocolateBar3() {
+        String output = Sandbox.chocolateBar(7, 4, 21);
+        Assert.assertEquals(output, "YES");
+    }
 }
