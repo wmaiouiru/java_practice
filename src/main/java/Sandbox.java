@@ -1,11 +1,37 @@
 package main.java;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Scanner;
+
+enum Grade {
+    A (5),
+    B (4),
+    C (3),
+    D (2)
+    ;
+    private final int gradeCode;
+    Grade(int gradeCode) {
+        this.gradeCode = gradeCode;
+    }
+    public int getGradeCode(){
+        return this.gradeCode;
+    }
+    public static Grade fromNum(int num){
+        for(Grade type : values()){
+            if (type.getGradeCode() == num){
+                return type;
+            }
+        }
+        return null;
+    }
+}
 
 public class Sandbox {
     public static void main(String[] args) {
-        calculateCompoundGrowthYear();
+        countGrades();
+        // calculateCompoundGrowthYear();
         // sizeOfParts();
         // runTernaryOperator();
         // SubStringRange();
@@ -13,6 +39,26 @@ public class Sandbox {
         // CheckDiffNums();
         // CheckIncrements();
         // JoinByWhiteSpace();
+    }
+
+    public static HashMap<Integer, Integer> countGrades(){
+        HashMap<Integer,Integer> hm = new HashMap<Integer,Integer>();
+        Scanner scanner = new Scanner(System.in);
+        int len = scanner.nextInt(); // reading a length
+        hm.put(Grade.D.getGradeCode(), 0); // D
+        hm.put(Grade.C.getGradeCode(), 0); // C
+        hm.put(Grade.B.getGradeCode(), 0); // B
+        hm.put(Grade.A.getGradeCode(), 0); // A
+        for (int i = 0; i < len; i++) {
+            int n = scanner.nextInt(); // read the next number of the array
+            if (hm.containsKey(n)){
+                hm.put(n, hm.get(n)+1);
+            } else {
+                hm.put(n, 1);
+            };
+        }
+        System.out.println(hm.get(2) + " " + hm.get(3) + " " + hm.get(4) + " " + hm.get(5));
+        return hm;
     }
     public static int longestAscStrictSeq(){
         // Ref: https://hyperskill.org/learn/step/2138

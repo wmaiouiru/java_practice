@@ -11,6 +11,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -27,16 +28,37 @@ class SandboxTest {
         System.out.println("setUpStreams");
         System.setOut(new PrintStream(outContent));
         System.setErr(new PrintStream(errContent));
-        System.out.println("restoreStreams");
-        System.setOut(originalOut);
-        System.setErr(originalErr);
+
     }
 
     @AfterEach
     void tearDown() {
-        System.out.println("After");
+        System.out.println("restoreStreams");
+        System.setOut(originalOut);
+        System.setErr(originalErr);
     }
-
+    @Test
+    void testCountGrades(){
+        InputStream sysInBackup = System.in;
+        ByteArrayInputStream in = new ByteArrayInputStream(("13\n" +
+                "2\n" +
+                "5\n" +
+                "5\n" +
+                "5\n" +
+                "5\n" +
+                "3\n" +
+                "2\n" +
+                "4\n" +
+                "3\n" +
+                "3\n" +
+                "3\n" +
+                "2\n" +
+                "3").getBytes());
+        System.setIn(in);
+        HashMap<Integer, Integer> hm = Sandbox.countGrades();
+        System.setIn(sysInBackup);
+        Assert.assertEquals(5, 5);
+    }
     @Test
     void longestAscStrictSeq(){
         InputStream sysInBackup = System.in;
