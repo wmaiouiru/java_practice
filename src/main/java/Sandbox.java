@@ -5,13 +5,50 @@ import java.util.Scanner;
 
 public class Sandbox {
     public static void main(String[] args) {
-        SubStringRange();
+        sizeOfParts();
+        // runTernaryOperator();
+        // SubStringRange();
         // CheckUnicodeTable();
         // CheckDiffNums();
         // CheckIncrements();
         // JoinByWhiteSpace();
     }
 
+    public static void waitForInput(){
+        // https://hyperskill.org/learn/step/3498
+        Scanner scanner = new Scanner(System.in);
+        int sum = 0;
+        while (scanner.hasNext()) {
+            int elem = scanner.nextInt();
+            sum += elem;
+        }
+
+        System.out.println(sum);
+    }
+    public static void sizeOfParts(){
+        // ref: https://hyperskill.org/learn/step/2194
+        Scanner scanner = new Scanner(System.in);
+        int inputSize = scanner.nextInt();
+        int readyCount = 0;
+        int toBeFixedCount = 0;
+        int rejectCount = 0;
+        for (int index = 0; index <= inputSize-1;index ++) {
+            int partSize = scanner.nextInt();
+            if (partSize  == 0){
+                readyCount += 1;
+            } else if (partSize == 1){
+                toBeFixedCount += 1;
+            } else if (partSize == -1){
+                rejectCount += 1;
+            }
+        }
+        System.out.println(readyCount+" "+toBeFixedCount+" "+rejectCount);
+    }
+    public static void runTernaryOperator(){
+        // ref: https://hyperskill.org/learn/step/3506
+        int num = 2;  // it's initialized by a value
+        System.out.println(num % 2 == 0 ? "even" : "odd");
+    }
     public static String chocolateBar(int n, int m, int k) {
         /**
          * Reference: https://hyperskill.org/learn/step/2170
