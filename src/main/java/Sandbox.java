@@ -5,7 +5,8 @@ import java.util.Scanner;
 
 public class Sandbox {
     public static void main(String[] args) {
-        sizeOfParts();
+        calculateCompoundGrowthYear();
+        // sizeOfParts();
         // runTernaryOperator();
         // SubStringRange();
         // CheckUnicodeTable();
@@ -13,7 +14,114 @@ public class Sandbox {
         // CheckIncrements();
         // JoinByWhiteSpace();
     }
+    public static int longestAscStrictSeq(){
+        // Ref: https://hyperskill.org/learn/step/2138
+        Scanner scanner = new Scanner(System.in);
+        int len = scanner.nextInt(); // reading a length
+        int[] array = new int[len];  // creating an array with the specified length
+        for (int i = 0; i < len; i++) {
+            array[i] = scanner.nextInt(); // read the next number of the array
+        }
+        int maxCount = 1; // initalized to 1 because that is possible
+        int currentCount = 1;
+        for (int i = 0; i < len - 1; i++) {
+            if (array[i] < array[i+1]){
+                currentCount += 1;
+            } else {
+                currentCount = 1;
+            }
+            if(currentCount > maxCount) {
+                maxCount = currentCount;
+            }
+        }
+        return maxCount;
+    }
+    public static int[] cyclicShifting(){
+        // ref: https://hyperskill.org/learn/step/2142
+        Scanner scanner = new Scanner(System.in);
+        int len = scanner.nextInt(); // reading a length
+        int[] array = new int[len];  // creating an array with the specified length
+        for (int i = 0; i < len; i++) {
+            array[i] = scanner.nextInt(); // read the next number of the array
+        }
 
+        int temp = array[len-1];
+        for (int i = len-1; i > 0; i--) {
+            array[i] = array[i-1]; // read the next number of the array
+        }
+        array[0] = temp;
+        return array;
+    }
+    public static int countNumInArray(){
+        // Ref: https://hyperskill.org/learn/step/2132
+        Scanner scanner = new Scanner(System.in);
+        int len = scanner.nextInt(); // reading a length
+        int[] array = new int[len];  // creating an array with the specified length
+
+        for (int i = 0; i < len; i++) {
+            array[i] = scanner.nextInt(); // read the next number of the array
+        }
+        int targetNum = scanner.nextInt();
+        int count = 0;
+        for (int i = 0; i < len; i++){
+            if (array[i] == targetNum){
+                count+=1;
+            }
+        }
+        return count;
+    }
+    public static boolean checkInOrder(){
+        boolean asc = false;
+        boolean inOrder = true;
+        Scanner scanner = new Scanner(System.in);
+        int m = scanner.nextInt();
+        int n = scanner.nextInt();
+        // handle duplicates cases
+        if (m == n){
+            while (scanner.hasNext() && m ==n){
+                m = n;
+                n = scanner.nextInt();
+            }
+        }
+        System.out.println(m + " " + n);
+        if (m < n) {
+            asc = true;
+        }
+        m = n;
+        System.out.println("asc:" + asc);
+        System.out.println("m:" + m +" n:"+ n);
+        while (scanner.hasNext()){
+            n = scanner.nextInt();
+            System.out.println("m:" + m +" n:"+ n);
+            if (n == 0){
+                break;
+            }
+            if (asc && m > n){
+                inOrder = false;
+                break;
+            }
+            if (!asc && m < n){
+                inOrder = false;
+                break;
+            }
+            m =n;
+        }
+        System.out.println(inOrder);
+        return inOrder;
+    }
+    public static int calculateCompoundGrowthYear(){
+        Scanner scanner = new Scanner(System.in);
+        float m = (float)scanner.nextInt();
+        float p = 1 + (float)scanner.nextInt()/100;
+        float k = (float)scanner.nextInt();
+        int yearCount = 0;
+        while(m < k) {
+            yearCount++;
+            m *= p;
+            System.out.println(m);
+        };
+        return yearCount;
+    }
     public static void waitForInput(){
         // https://hyperskill.org/learn/step/3498
         Scanner scanner = new Scanner(System.in);
