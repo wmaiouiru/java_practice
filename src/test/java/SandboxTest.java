@@ -28,7 +28,6 @@ class SandboxTest {
         System.out.println("setUpStreams");
         System.setOut(new PrintStream(outContent));
         System.setErr(new PrintStream(errContent));
-
     }
 
     @AfterEach

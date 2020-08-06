@@ -33,23 +33,14 @@ public class SandBox2 {
         }
     }
 
-    public static void runCheckSymmetricMatrix(){
+    public static boolean runCheckSymmetricMatrix(){
         Scanner scanner = new Scanner(System.in);
         int mSize = scanner.nextInt();
-        int[][] matrix = getInputMatrix(mSize, scanner);
-        checkSymmetricMatrix(mSize, matrix);
+        int[][] matrix = Matrix.getMatrixFromScanner(mSize, scanner);
+        return checkSymmetricMatrix(mSize, matrix);
     }
 
-    public static int[][] getInputMatrix(int mSize, Scanner scanner){
-        int[][] matrix = new int[mSize][mSize];
-        for(int i =0; i<mSize; i++){
-            for(int j=0; j<mSize;j++){
-                matrix[i][j] = scanner.nextInt();
-            }
-        }
-        return matrix;
-    }
-    public static void checkSymmetricMatrix(int mSize, int[][] matrix) {
+    public static boolean checkSymmetricMatrix(int mSize, int[][] matrix) {
         /**
          * Example:
          * 3
@@ -71,8 +62,10 @@ public class SandBox2 {
         }
         if (isSymmetric) {
             System.out.println("YES");
+            return true;
         } else {
             System.out.println("NO");
+            return false;
         }
     }
 }
